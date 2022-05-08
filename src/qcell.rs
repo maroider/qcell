@@ -182,6 +182,14 @@ impl<T: ?Sized> QCell<T> {
     }
 }
 
+#[cfg(feature = "alloc")]
+impl<T> QCell<T> {
+    #[inline]
+    pub fn into_inner(self) -> T {
+        self.value.into_inner()
+    }
+}
+
 /// Borrowing-owner of zero or more [`QCell`] instances.
 ///
 /// The owner will have a temporally unique ID associated with it to
