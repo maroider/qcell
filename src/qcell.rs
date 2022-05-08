@@ -175,6 +175,11 @@ impl<T: ?Sized> QCell<T> {
     pub fn rw<'a>(&'a self, owner: &'a mut QCellOwner) -> &'a mut T {
         owner.rw(self)
     }
+
+    #[inline]
+    pub fn get_mut(&mut self) -> &mut T {
+        self.value.get_mut()
+    }
 }
 
 /// Borrowing-owner of zero or more [`QCell`] instances.
